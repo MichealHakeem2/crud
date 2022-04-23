@@ -110,9 +110,12 @@ $s= mysqli_query($conn , $select);
 					<input type="number" id="form3Example3cg" name="Price" class="form-control form-control-lg" placeholder="Your price">
                  </div>
 				  <div class="d-flex justify-content-center">
-					<button type="button" name="update" class="btn btn-info btn-block btn-lg gradient-custom-4 text-body">Update Data</button><br>
-					<button type="button" name="send" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Send Data</button>
-				  </div>
+                      <?php if($update):?>
+					<button type="button" name="update" class="btn btn-primary btn-block btn-lg gradient-custom-4 text-body">Update Data</button><br>
+					<?php else :?>
+                    <button type="button" name="send" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Send Data</button>
+				 <?php endif; ?>
+                </div>
 				</form>
 			  </div>
 			</div>
@@ -138,8 +141,8 @@ $s= mysqli_query($conn , $select);
         <td> <?php echo $data['name'] ?> </td>
         <td> <?php echo $data['category'] ?> </td>
         <td> <?php echo $data['price'] ?> </td>
-        <td><a onclick="return confirm('Are You Sure ? ')" href="index.php?delete=<?php echo $data['id']?>" class="btn btn-danger">Delete</a></td><br>
-        <td><a  href="index.php?edit=<?php echo $data['id']?>" class="btn btn-info">Edit</a></td>
+        <td><a onclick="return confirm('Are You Sure ? ')" name="delete" href="index.php?delete=<?php echo $data['id']?>" class="btn btn-danger">Delete</a></td><br>
+        <td><a  name="edit" href="index.php?edit=<?php echo $data['id']?>" class="btn btn-info">Edit</a></td>
       </tr>
       <?php };?>
     </table>
