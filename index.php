@@ -128,7 +128,7 @@ margin-bottom: 120px;
 					<input type="number" id="form3Example3cg" name="Price" class="form-control form-control-lg" placeholder="Your price">
                  </div>
 				  <div class="d-flex justify-content-center">
-					<button type="button" name="update" class="btn btn-info btn-block btn-lg none gradient-custom-4 text-body">Update Data</button>
+					<button type="button" name="update" class="btn btn-info btn-block btn-lg none gradient-custom-4 text-body">Update Data</button><br>
 					<button type="button" name="send" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Send Data</button>
 				  </div>
 				</form>
