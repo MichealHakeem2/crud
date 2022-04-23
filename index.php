@@ -4,12 +4,22 @@ $user="root";
 $password='';
 $dbname="shop";
 $conn = mysqli_connect($host,$user,$password,$dbname);
+$name = '';
+$category = '';
+$price = '';
+$update = false;
 if(isset($_POST['send'])){
   $name = $_POST['Name'];
 $category = $_POST['category'];
 $price = $_POST['Price'];
-$insert = "INSERT INTO `products` VALUES(null,'$name',$category,$price)";
+$insert = "INSERT INTO `products` VALUES(null,'$name','$category',$price)";
 $i = mysqli_query($conn , $insert);
+if ($i) {
+   echo "true";
+}else {
+   echo "false";
+
+}
 if($i){
     echo "<div class='alert alert-info mx-auto w-50'>
     insert done to database
@@ -34,12 +44,7 @@ if($d){
     delete Failed to database
     </div>";   
 }
-  header("location:index.php");
 }
-$name = '';
-$category = '';
-$price = '';
-$update = false;
 if (isset($_GET['edit'])) {
     $update = true;
     $id = $_GET['edit'];
@@ -55,7 +60,6 @@ if (isset($_POST['update'])) {
     $price = $_POST['Price'];
     $update= "UPDATE `products` SET `name` = $name,`category` = $category, `price` = $price where `id` = $id";
     $u= mysqli_query($conn , $update);
-    header("location:index.php");
 
 }
 
@@ -82,30 +86,8 @@ $s= mysqli_query($conn , $select);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-    <style>
+    <link rel="stylesheet" href="./main.css">
 
-        section{
-   padding-top: 75px;
-margin-bottom: 120px;
-}
-.none{
-    display: none;
-}
- .gradient-custom-4 {
-   /* fallback for old browsers */
-   background: #6a11cb;
- 
-   /* Chrome 10-25, Safari 5.1-6 */
-   background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1));
- 
-   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-   background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
- }
- .rel{
-   position: absolute;
-   left: 25px;
-  }
-    </style>
     <title>Document</title>
 </head>
 <body>
@@ -128,7 +110,7 @@ margin-bottom: 120px;
 					<input type="number" id="form3Example3cg" name="Price" class="form-control form-control-lg" placeholder="Your price">
                  </div>
 				  <div class="d-flex justify-content-center">
-					<button type="button" name="update" class="btn btn-info btn-block btn-lg none gradient-custom-4 text-body">Update Data</button><br>
+					<button type="button" name="update" class="btn btn-info btn-block btn-lg gradient-custom-4 text-body">Update Data</button><br>
 					<button type="button" name="send" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Send Data</button>
 				  </div>
 				</form>
@@ -156,8 +138,8 @@ margin-bottom: 120px;
         <td> <?php echo $data['name'] ?> </td>
         <td> <?php echo $data['category'] ?> </td>
         <td> <?php echo $data['price'] ?> </td>
-        <td><a onclick="return confirm('Are You Sure ? ')" href="index.php?delete=<?php echo $data['$id']?>" class="btn btn-danger">Delete</a></td><br>
-        <td><a  href="index.php?edit=<?php echo $data['$id']?>" class="btn btn-info">Edit</a></td>
+        <td><a onclick="return confirm('Are You Sure ? ')" href="index.php?delete=<?php echo $data['id']?>" class="btn btn-danger">Delete</a></td><br>
+        <td><a  href="index.php?edit=<?php echo $data['id']?>" class="btn btn-info">Edit</a></td>
       </tr>
       <?php };?>
     </table>
