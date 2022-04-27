@@ -8,18 +8,13 @@ $name = '';
 $category = '';
 $price = '';
 $update = false;
+if ($_SERVER ['REQUEST_METHOD']  == "POST") {
 if(isset($_POST['send'])){
   $name = $_POST['Name'];
 $category = $_POST['category'];
 $price = $_POST['Price'];
 $insert = "INSERT INTO `products` VALUES(null,'$name','$category',$price)";
 $i = mysqli_query($conn , $insert);
-if ($i) {
-   echo "true";
-}else {
-   echo "false";
-
-}
 if($i){
     echo "<div class='alert alert-info mx-auto w-50'>
     insert done to database
@@ -29,6 +24,8 @@ if($i){
     echo "<div class='alert alert-danger mx-auto w-50'>
     insert Failed to database
     </div>";   
+}
+}
 }
 if (isset($_GET['delete'])) {
     $id = $_GET['delete'];
@@ -73,8 +70,6 @@ if($d){
     update Failed to database
     </div>";   
 }
-}
-
 }
 $select= "SELECT * from `products`";
 $s= mysqli_query($conn , $select);
