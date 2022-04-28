@@ -59,17 +59,6 @@ if (isset($_POST['update'])) {
     $u= mysqli_query($conn , $update);
 
 }
-
-if($d){
-    echo "<div class='alert alert-info mx-auto w-50'>
-    update done to database
-    </div>";
-    
-}else {
-    echo "<div class='alert alert-danger mx-auto w-50'>
-    update Failed to database
-    </div>";   
-}
 }
 $select= "SELECT * from `products`";
 $s= mysqli_query($conn , $select);
@@ -86,7 +75,6 @@ $s= mysqli_query($conn , $select);
     <title>Document</title>
 </head>
 <body>
-    <div class="contanir">
             <section class="vh-100 bg-image w-800">
 	<div class="mask d-flex align-items-center h-100 gradient-custom-3">
 	  <div class="container h-100">
@@ -117,7 +105,6 @@ $s= mysqli_query($conn , $select);
 		  </div>
 		</div>
 	  </div>
-	</div>
   </section>
   <div class="container">
    <div class="card">
