@@ -8,7 +8,6 @@ $name = '';
 $category = '';
 $price = '';
 $update = false;
-if ($_SERVER ['REQUEST_METHOD']  == "POST") {
 if(isset($_POST['send'])){
   $name = $_POST['Name'];
 $category = $_POST['category'];
@@ -24,7 +23,6 @@ if($i){
     echo "<div class='alert alert-danger mx-auto w-50'>
     insert Failed to database
     </div>";   
-}
 }
 }
 if (isset($_GET['delete'])) {
@@ -48,14 +46,14 @@ if (isset($_GET['edit'])) {
     $select = "SELECT * from `products` where id = $id";
     $ss = mysqli_query($conn,$select);
     $data = mysqli_fetch_assoc($ss);
-    $name = $data['Name'];
+    $name = $data['name'];
     $category = $data['category'];
-    $price = $data['Price'];
+    $price = $data['price'];
 if (isset($_POST['update'])) {
     $name = $_POST['Name'];
     $category = $_POST['category'];
     $price = $_POST['Price'];
-    $update= "UPDATE `products` SET `name` = $name,`category` = $category, `price` = $price where `id` = $id";
+    $update= "UPDATE `products` SET `name` = '$name',`category` = '$category', `price` = '$price' where `id` = $id";
     $u= mysqli_query($conn , $update);
 
 }
@@ -94,9 +92,9 @@ $s= mysqli_query($conn , $select);
                  </div>
 				  <div class="d-flex justify-content-center">
                       <?php if($update):?>
-					<button type="button" name="update" class="btn btn-primary btn-block btn-lg gradient-custom-4 text-body">Update Data</button><br>
+					<button type="submit" name="update" class="btn btn-primary btn-block btn-lg gradient-custom-4 text-body">Update Data</button><br>
 					<?php else :?>
-                    <button type="button" name="send" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Send Data</button>
+                    <button type="submit" name="send" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Send Data</button>
 				 <?php endif; ?>
                 </div>
 				</form>
